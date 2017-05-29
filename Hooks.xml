@@ -191,13 +191,13 @@
                 <add>
                         <accessor>com/locopk/client/rs/Entity</accessor>
                         <field>smallX</field>
-                        <fieldname>smallX</fieldname>
+                        <fieldname>getSmallX</fieldname>
                         <desc>[I</desc>
                 </add>
                 <add>
                         <accessor>com/locopk/client/rs/Entity</accessor>
                         <field>smallY</field>
-                        <fieldname>smallY</fieldname>
+                        <fieldname>getSmallY</fieldname>
                         <desc>[I</desc>
                 </add>
                 <add>
@@ -1835,7 +1835,7 @@
                 <add>
                         <accessor>com/locopk/client/rs/RSApplet</accessor>
                         <field>saveClickX</field>
-                        <fieldname>saveClickX</fieldname>
+                        <fieldname>getSavedXClick</fieldname>
                         <desc>I</desc>
                 </add>
                 <add>
@@ -6125,7 +6125,7 @@
                 <add>
                         <accessor>com/locopk/client/rs/Client</accessor>
                         <field>myPlayer</field>
-                        <fieldname>myPlayer</fieldname>
+                        <fieldname>getMyPlayer</fieldname>
                         <desc>Lcom/locopk/client/rs/Player;</desc>
                 </add>
                 <add>
