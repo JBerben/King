@@ -1,5 +1,3 @@
-# README IS STILL IN PROGRESS
-
 ![King](https://dl.dropboxusercontent.com/s/yn0rl4kbv06vwjf/KING%20%281%29.png?dl=0)
 
 
