@@ -1,6 +1,7 @@
 # README IS STILL IN PROGRESS
 
-![King](https://dl.dropboxusercontent.com/s/8di3f506tt7rg3a/hipsterlogogenerator_1495881043049.png?dl=0)
+![King](https://dl.dropboxusercontent.com/s/yn0rl4kbv06vwjf/KING%20%281%29.png?dl=0)
+
 
 King is a modified game client for private servers of the popular MMORPG "Runescape". It allows you to create and run your own scripts and exploits. At the moment, this repo only contains the updater for the game client, and not the client itself, but in due time, both of them will be linked together and posted here. (IMAGE HERE). 
 
