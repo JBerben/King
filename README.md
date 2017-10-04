@@ -1,3 +1,9 @@
+![ASM](https://img.shields.io/badge/Java-ASM-yellow.svg)
+[![GitHub commits](https://img.shields.io/github/commits-since/SubtitleEdit/subtitleedit/3.4.7.svg)]()
+[![GitHub Issues](https://img.shields.io/github/issues/anfederico/Clairvoyant.svg)](https://github.com/JBerben/King/issues)
+![Servers](https://img.shields.io/badge/Servers-Runelocus-blue.svg)
+[![License](https://img.shields.io/badge/license-MIT-red.svg)](https://opensource.org/licenses/MIT)
+
 ![King](https://dl.dropboxusercontent.com/s/yn0rl4kbv06vwjf/KING%20%281%29.png?dl=0)
 
 
