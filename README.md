@@ -1,8 +1,9 @@
-![ASM](https://img.shields.io/badge/Java-ASM-yellow.svg)
-[![Downloads](http://hits.dwyl.io/JBerben/King.svg)](http://hits.dwyl.io/JBerben/King)
-[![GitHub Issues](https://img.shields.io/github/issues/anfederico/Clairvoyant.svg)](https://github.com/JBerben/King/issues)
-![Servers](https://img.shields.io/badge/Servers-Runelocus-blue.svg)
-[![License](https://img.shields.io/badge/license-MIT-red.svg)](https://opensource.org/licenses/MIT)
+![ASM](https://img.shields.io/badge/Java-ASM-yellow.svg?style=flat-square)
+[![Hits](http://hits.dwyl.io/JBerben/King.svg)](http://hits.dwyl.io/JBerben/King)
+[![GitHub Issues](https://img.shields.io/github/issues/JBerben/King.svg?style=flat-square)](https://github.com/JBerben/King/issues)
+![Servers](https://img.shields.io/badge/Servers-Runelocus-blue.svg?style=flat-square)
+![Downloads](https://img.shields.io/npm/dt/King.svg?style=flat-square)
+[![License](https://img.shields.io/badge/license-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 ![King](https://dl.dropboxusercontent.com/s/yn0rl4kbv06vwjf/KING%20%281%29.png?dl=0)
 
