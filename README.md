@@ -28,6 +28,8 @@ Setup for King is very straight forward
 
 > OR, just download the jar file (might be slightly outdated at times)
 ```      
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/JBerben/King/raw/master/bin/King_Version_b001.jar" data-icon="octicon-cloud-download" data-size="large" aria-label="Download JBerben/King on GitHub">Download</a>
 
 ## Demo
 
