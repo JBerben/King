@@ -12,7 +12,9 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
 
+import src.main.org.bot.client.ui.UI;
 import src.main.org.updater.Updater;
+import src.main.org.updater.UpdaterManager;
 import src.main.org.updater.obj.GameClass;
 import src.main.org.updater.obj.GameMethod;
 import src.main.org.updater.patterns.BytecodeAnalysis;
@@ -24,6 +26,7 @@ import src.main.org.updater.util.Maths;
  * with a clean class.
  */
 public class Classes extends Transform {
+	
 	public Classes(Updater i) {
 		super(i);
 	}
@@ -31,7 +34,9 @@ public class Classes extends Transform {
 	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, ClassNode> identify(Collection<ClassNode> cleanNodes) {
-
+		
+		UpdaterManager.status = "Finding classes...";
+		
 		// To rename dirty classes
 		HashMap<String, String> classNameTable = new HashMap<String, String>();
 		
@@ -40,6 +45,8 @@ public class Classes extends Transform {
 
 		// Cycles through clean classes whilst comparing with dirty
 		for (ClassNode clean : cleanNodes) {
+			
+			UpdaterManager.status = "Hooking Class: " + clean.name;
 
 			GameClass match = new GameClass();
 			GameMethod cleanMethod = new GameMethod(clean);
@@ -248,6 +255,8 @@ public class Classes extends Transform {
 					//	System.out.println("Trying to match: " + match.getName() + " --> " + match.getNode().name
 					//			+ " | " + match.getSimilarity());
 					}
+					UpdaterManager.progress += (100 / cleanNodes.size()) * 0.3f;
+					UI.sl.UpdateProgress(UpdaterManager.progress, UpdaterManager.status);
 					matchedClasses.put(match.getName(), match.getNode());	
 					Updater.methodNameset.put(match.getNode().name, match.getName());
 				}

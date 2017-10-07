@@ -158,6 +158,7 @@ public class Updater {
 				}
 			}
 
+			UpdaterManager.status = "Hooking Complete!";
 			Stream.log("", "\n\n");
 
 			if (entry.getValue() != null) {

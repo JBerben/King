@@ -17,7 +17,7 @@ public class XMLParser {
 	NodeList classes;
 	NodeList fields;
 	NodeList methods;
-	
+
 	public XMLParser(String file) {
 		try {
 			this.inputFile = new File(file + ".xml");
@@ -25,16 +25,16 @@ public class XMLParser {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			this.doc = dBuilder.parse(inputFile);
 			doc.getDocumentElement().normalize();
-			
+
 			this.classes = doc.getElementsByTagName("class");
 			this.fields = doc.getElementsByTagName("field");
 			this.methods = doc.getElementsByTagName("method");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public String getClass(String name) {
 		String className = null;
 		for (int i = 0; i < this.classes.getLength(); i++) {
@@ -42,24 +42,25 @@ public class XMLParser {
 			if (n.getChildNodes().item(1).getTextContent().equals(name)) {
 				className = (n.getChildNodes().item(3).getTextContent());
 			}
-			
+
 		}
 		return className;
 	}
-	
+
 	public String getMethod(String name) {
 		String methodName = null;
 		for (int i = 0; i < this.methods.getLength(); i++) {
 			Node n = this.methods.item(i);
-			//System.out.println(n.getChildNodes().item(3).getTextContent());
+			// System.out.println(n.getChildNodes().item(3).getTextContent());
 			if (n.getChildNodes().item(3).getTextContent().equals(name)) {
-				methodName = n.getChildNodes().item(1).getTextContent() + "." + (n.getChildNodes().item(3).getTextContent());
+				methodName = n.getChildNodes().item(1).getTextContent() + "."
+						+ (n.getChildNodes().item(3).getTextContent());
 			}
-			
+
 		}
 		return methodName;
 	}
-	
+
 	public String getField(String name) {
 		String fieldName = null;
 		for (int i = 0; i < this.fields.getLength(); i++) {
@@ -70,5 +71,18 @@ public class XMLParser {
 		}
 		return fieldName;
 	}
-	
+
+	public String getField(String className, String fieldName) {
+		String name = null;
+		for (int i = 0; i < this.fields.getLength(); i++) {
+			Node n = this.fields.item(i);
+			if (n.getChildNodes().item(3).getTextContent().equals(fieldName)) {
+				if (n.getChildNodes().item(4).getTextContent().equals(className)) {
+					name = n.getChildNodes().item(3).getTextContent();
+				}
+			}
+		}
+		return name;
+	}
+
 }

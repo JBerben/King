@@ -18,94 +18,59 @@ import src.main.org.bot.reflection.Objects;
 public class Client {
 
 	private static XMLParser parser = new XMLParser("Hooks");
-    public static Object instance = getObject("com.locopk.client.rs.Client", "instance");
-    public static Class<?> client = (Class<?>) Objects.getO(parser.getClass("client"));
+    private static Object instance = getObject("com.locopk.client.rs.Client", "instance");
+	
+    private static String client;
+    //public static Class<?> client = (Class<?>) Objects.getO(parser.getClass("client"));
     
+    /*
+     * Default constructor
+     * Sets Client instance
+     */
     public Client() {
-        this.instance = getObject("com.locopk.client.rs.Client", "instance");
+        client = parser.getClass("client");
+        instance = getObject(client, "instance");
         System.out.println(instance.toString());
     }
 
-    //not working for some reason :|
-    public static void doAction(int i) {
-        try {
-            Method m = getClassLoader().loadClass("com.locopk.client.rs.Client").getDeclaredMethod("doAction", int.class);
-            if (m == null) {
-                return;
-            }
-            m.setAccessible(true);
-            m.invoke(instance, i);
-
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void trackPlayers() {
-    	try {
-    		Class pTypes[] = {Stream.class, int.class };
-    		Client client = new Client();
-    		Class<?> c = client.getClass();
-    		Method m = c.getDeclaredMethod("method91", pTypes[0], pTypes[1]);
-    		if (m == null) {
-    			return;
-    		}
-    		m.setAccessible(true);
-    		m.invoke(client);
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-    }
-    
-    public static void Set() {
-    	Integers.SetAllFields(client);
-    }
-
-    public static Object Call(Class<?> className, Object instance, String fieldName) {
-    	Field f;
-		try {
-			f = className.getDeclaredField(fieldName);
-			f.setAccessible(true);
-			System.out.println(f.get(instance));
-			Logger.writeConsole(fieldName.toUpperCase() + ": " + f.get(instance).toString());
-			return f.get(instance);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-    }
-    
-    // THIS SHIT WORKS OMG
-    public static int Test() {
-    	return Integers.getInt(client, instance, "playerCount");
-    }
-    
+    /*
+     * GETTERS
+     */
     public boolean isLoggedIn() {
-        return getBoolean("com.locopk.client.rs.Client", "loggedIn", instance);
+        return getBoolean(client, parser.getField("loggedIn"), instance);
     }
 
     public static int getOpenInterfaceID() {
-        return getInt(client, instance, "openInterfaceID");
+        return getInt(client, parser.getField("currentOpenInterface"), instance);
     }
 
     public static int getBaseX() {
-        return getInt(client, instance, parser.getField("baseX"));
+        return getInt(client, parser.getField("baseX"), instance);
+    }
+    
+    public static int getBaseY() {
+        return getInt(client, parser.getField("baseY"), instance);
     }
     
     public static int getPlayerCount() {
-    	return getInt(client, instance, parser.getField("playerCount"));
-    }
-
-    public static int getBaseY() {
-        return getInt(client, instance, "baseY");
+    	return getInt(client, parser.getField("playerCount"), instance);
     }
 
     public static int getPlane() {
-        return getInt(client, instance, "plane");
+        return getInt(client, parser.getField("plane"), instance);
+    }
+    
+    public static int getOpenBackDialogId() {
+    	return getInt(client, parser.getField("backDialogID"), instance);
     }
 
     public static int getLoopCycle() {
         return getInt(client, null, "loopCycle");
+    }
+    
+    public static int[][] getCollisionFlags() {
+    	return null;
+    	//return get2dIntArray(client, parser.getField(""))
     }
 
     public static int getOverlayCurrentHealth() {
@@ -115,10 +80,6 @@ public class Client {
     public static int getOverlayMaxHealth() {
         return getInt(client, instance, "drawMaxHP");
     }
-
-   // public static int[] getTabInterfaceIds() {
-    //    return getIntArray(client, instance, "tabInterfaceIDs");
-    //}
 
     public static int getGameTabID() {
         return getInt(client, instance, "tabID");
@@ -156,27 +117,5 @@ public class Client {
     public static Object[] getNPCIndices() {
         return getObjectArray("com.locopk.client.rs.Client", "npcIndex", instance);
     }
-
-    public static void intfields() {
-        try {
-            // Field f = Loader.getClassLoader().loadClass(className).getDeclaredField(fieldName);
-            for (Field f : Loader.getClassLoader().loadClass("com.locopk.client.rs.Client").getDeclaredFields()) {
-                try {
-                if (f.getType().equals(int.class)) {
-                    f.setAccessible(true);
-
-                    System.out.println(f.getName() + ": " + f.get(instance));
-                }
-                }
-                catch (Exception e) {
-                        // e.printStackTrace();
-
-                    }
-            }
-            System.out.println();
-        } catch (Exception e) {
-           // e.printStackTrace();
-
-        }
-    }
+    
 }

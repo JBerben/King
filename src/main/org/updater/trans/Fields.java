@@ -19,7 +19,9 @@ import org.objectweb.asm.tree.MultiANewArrayInsnNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
+import src.main.org.bot.client.ui.UI;
 import src.main.org.updater.Updater;
+import src.main.org.updater.UpdaterManager;
 import src.main.org.updater.obj.GameField;
 import src.main.org.updater.obj.GameMethod;
 import src.main.org.updater.util.Maths;
@@ -32,6 +34,9 @@ import src.main.org.updater.util.search.InstructionSearcher;
  */
 public class Fields extends Transform {
 
+	public static float fieldProgress;
+	private static int numFields;
+	
 	public Fields(Updater i) {
 		super(i);
 	}
@@ -39,6 +44,9 @@ public class Fields extends Transform {
 	@Override
 	public HashMap<String, ClassNode> identify(Collection<ClassNode> classNodes) {
 
+		numFields = classNodes.size();
+		UpdaterManager.status = "Finding Fields...";
+		
 		/*
 		 * These HashMaps were explained in Updater.class
 		 */
@@ -205,6 +213,9 @@ public class Fields extends Transform {
 		dirty = analyseClass(d);
 
 		for (GameField cgf : clean.values()) {
+			
+			UpdaterManager.status = "Hooking Field: " + cgf.getName();
+			
 			cgf.setAcessor(c);
 			float sim = 0f;
 			float comp = 0f;
@@ -226,6 +237,8 @@ public class Fields extends Transform {
 			System.out.println("Clean Field: " + cgf.getName() + " |" + cgf.timesUsed + "| " + cgf.methodsUsedIn
 					+ " -> " + match.getName() + " |" + match.timesUsed + "|" + match.methodsUsedIn);
 			matches.put(cgf, match);
+			UpdaterManager.progress += (100 / numFields) * 0.4f;
+			UI.sl.UpdateProgress(UpdaterManager.progress, UpdaterManager.status);
 		}
 		return matches;
 	}

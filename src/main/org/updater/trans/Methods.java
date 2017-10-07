@@ -9,7 +9,9 @@ import java.util.regex.Pattern;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 
+import src.main.org.bot.client.ui.UI;
 import src.main.org.updater.Updater;
+import src.main.org.updater.UpdaterManager;
 import src.main.org.updater.obj.GameMethod;
 import src.main.org.updater.patterns.BytecodeAnalysis;
 
@@ -19,7 +21,9 @@ import src.main.org.updater.patterns.BytecodeAnalysis;
  * and then maps the dirty methods up with the clean methods.
  */
 public class Methods extends Transform {
-
+	
+	private static int numMethods;
+	
 	public Methods(Updater i) {
 		super(i);
 	}
@@ -27,13 +31,24 @@ public class Methods extends Transform {
 	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, ClassNode> identify(Collection<ClassNode> classNodes) {
+		
+		UpdaterManager.status = "Finding Methods...";
 
+		/*
+		 * Find size
+		 */
+		for (ClassNode cn : Updater.cleanClasses.values()) {
+			numMethods += cn.methods.size();
+		}
+		
 		HashMap<String, GameMethod> processedMethods = new HashMap<String, GameMethod>();
 		Collection<ClassNode> cleanClasses = Updater.cleanClasses.values();
 
 		for (ClassNode cleanClass : cleanClasses) {
 			for (MethodNode cleanMethod : (List<MethodNode>) cleanClass.methods) {
 
+				UpdaterManager.status = "Hooking Method: " + cleanMethod.name;
+				
 				/*
 				 * gameMethods: A hashmap of GameMethods and their similarity rating.
 				 * dirtyClass: The bestmatched dirty class with the current clean class.
@@ -84,7 +99,8 @@ public class Methods extends Transform {
 						//		+ match.getName() + " --> " + match.getMethodNode().name + " | "
 						//		+ match.getSimilarity());
 					}
-					
+					UpdaterManager.progress += (100 / numMethods) * 0.3f;
+					UI.sl.UpdateProgress(UpdaterManager.progress, UpdaterManager.status);
 					processedMethods.put(match.getClassNode().name, match);
 				}
 

@@ -18,6 +18,8 @@ import src.main.org.updater.xml.XMLWriter;
 public class UpdaterManager {
 
 	public static String timeStamp = ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME);
+	public static float progress = 0;
+	public static String status = "Initializing Updater...";
 	
 	public static void UpdateHooks(String hookFileName) {
 		Stream.log("Initializing updater... | " + timeStamp);

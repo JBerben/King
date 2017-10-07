@@ -6,8 +6,8 @@ import java.lang.reflect.Modifier;
 import src.main.org.bot.client.Loader;
 
 public class Integers {
-	
-	//Temp
+
+	// Temp
 	public static void SetAllFields(Class<?> c) {
 		Field[] fields;
 		fields = c.getDeclaredFields();
@@ -22,43 +22,25 @@ public class Integers {
 			Field f = c.getDeclaredField(fieldName);
 			f.setAccessible(true);
 			return f.getInt(obj);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1337;
+		return -1;
 	}
-	
+
 	// Filler method for the moment to stop compiler throwing
 	public static int getInt(String c, String f, Object o) {
-		return 0;
-	}
-	
-	/* OLD METHOD
-	public static int getInt(String className, String fieldName, Object obj) {
 		try {
-			Field f = Loader.getClassLoader().loadClass(className).getDeclaredField(fieldName);
-			System.out.println(f.getName());
-			
-			if (Modifier.isStatic(f.getModifiers())) {
-				System.out.println("IS STATIC");
-				f.setAccessible(true);
-				System.out.println("::::::::::::::: " + f.getName());
-				return f.getInt(Class.forName(className));
-			} else if (!Modifier.isStatic(f.getModifiers())) {
-				System.out.println("IS NONSTATIC");
-				f.setAccessible(true);
-				f = obj.getClass().getDeclaredField(fieldName);
-				System.out.println(obj.getClass().getFields());
-				System.out.println("::::::::::::::: " + f.getName());
-				return f.getInt(obj);
-			}
+			Field field = Loader.getClassLoader().loadClass(c).getDeclaredField(f);
+			field.setAccessible(true);
+			return field.getInt(o);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1337;
+		return -1;
 	}
-	*/
 
 	public static int[] getIntArray(String className, String fieldName, Object obj) {
 		try {
@@ -69,6 +51,17 @@ public class Integers {
 			e.printStackTrace();
 		}
 		return new int[] {};
+	}
+	
+	public static int[][] get2dIntArray(String className, String fieldName, Object obj) {
+		try {
+			Field f = Loader.getClassLoader().loadClass(className).getDeclaredField(fieldName);
+			f.setAccessible(true);
+			return (int[][]) f.get(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new int[][] {};
 	}
 
 	/*

@@ -46,6 +46,12 @@ public class Loader extends JPanel {
             JPanel panel = this.getInstanceAs();
             Component[] components = panel.getComponents();
 
+            /*
+             * BEFORE WE SEE CLIENT LOADING
+             * TODO: Add personal loading bar
+             */
+            
+            
             applet = (Applet)components[0];
             applet.setStub(botStub);
             applet.setMinimumSize(DEFAULT_SIZE);
