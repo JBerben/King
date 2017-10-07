@@ -14,6 +14,8 @@ _King gives any player an unreasonable advantage, by allowing them to view any v
 
 ## How it works
 ![Demo](https://dl.dropboxusercontent.com/s/10hbiapjoh97xgx/demo_001.png?dl=0)
+
+
 Before the game client can even load, it must first de-obfuscate all of the obfuscated classes, fields and methods within the game client. This is the updaters' job. The updater then maps out all of these variables and renames them, allowing the King client API to read them. Once this is done, the client reflects the game's applet and runs it inside of it's own JFrame.
 
 ## How to use
